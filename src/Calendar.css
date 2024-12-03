@@ -1,0 +1,27 @@
+.calendar {
+    font-family: "Courier New";
+    padding: 20px;
+    border: 2px   #C8D2D1;
+    background-color: #f0f0f0;
+}
+
+.calendar select {
+    font-family: "Courier New";
+
+    margin: 20px;
+    padding: 10px;
+    border: 2px   #C8D2D1;
+    border-radius: 15px;
+    background-color: #5acee4;
+}
+
+.calendar input{
+    font-family: "Courier New";
+    width: 50px;
+
+    margin: 20px;
+    padding: 10px;
+    border: 2px   #C8D2D1;
+    border-radius: 15px;
+    background-color:#5acee4;
+}

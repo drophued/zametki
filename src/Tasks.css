@@ -1,0 +1,9 @@
+.daysButtons {
+    color: #C8D2D1;
+    padding: 20px 20px 20px 20px;
+    margin: 20px 4px;
+    border: 2px   #C8D2D1;
+    background-image: linear-gradient(to right, #832146 0%,  #004B7A 100%);
+    border-radius: 30px;
+}
+

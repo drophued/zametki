@@ -1,38 +1,92 @@
 .App {
-  text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+
+
+body {
+  background-color: #f0f0f0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.maindiv {
+  background-color: #ffffff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.mainul {
+  font-family: "Courier New";
+  padding: 0;
+  margin: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  list-style-type: none;
+  background-color: #ffffff;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
+
+.mainul li {
+  margin: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.mainul button {
+  font-family: "Courier New";
+  font-size: 25px;
+  border: 2px   #C8D2D1;
+  background-color: #ffffff;
+  color: black;
+  margin: 25px;
+}
+
+
+.backToMain {
+  border: 2px solid  #C8D2D1;
+  text-align: center;
+  transition: 0.5s;
+  padding: 1em;
+  background-size: 200% auto;
+  color: #C8D2D1;
+  margin: 25px;
+  border-radius: 5px;
+  background-image: linear-gradient(to right, #832146 0%,  #004B7A 100%);
+}
+
+.today {
+  font-family: "Courier New";
+  font-size: 20px;
+  padding: 50px 20px 20px 60px;
+}
+
+
+.today button {
+  padding: 20px;
+  margin: 17px;
+}
+
+.saveButton button:hover {
+  background-color: #5aa4e4;
+}
+
+.today textarea {
+
+  position: absolute;
+  left: 25em;
+  vertical-align: middle;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  padding: 20px;
+  font-size: 25px;
+
+}
+
+.saveButton button {
+  transition: 0.5s;
+  font-family: "Courier New";
+  margin: 100px 0px 0px 160px;
+  padding: 30px 45px 30px 45px;
+  font-size: 25px;
+  border-radius: 30px;
+  border: #f0f0f0;
+  background-color: #5acee4;
 }
