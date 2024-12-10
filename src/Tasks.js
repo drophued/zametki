@@ -4,71 +4,102 @@ import './Tasks.css';
 function Tasks({ currentMonthTasks, currentYear, currentMonth, currentDay }) {
     const [currentNote, setCurrentNote] = useState("");
     const [notesList, setNotesList] = useState([]);
+    const [currentEmotion, setCurrentEmotion] = useState(null);
+    const [isEditing, setIsEditing] = useState(false); // Состояние для отслеживания режима редактирования
 
-    // Generate a unique ID for the note based on day, month, and year
+    // Генерация уникального ID для заметки на основе дня, месяца и года
     const generateNoteId = (day, month, year) => `${day}-${month}-${year}`;
 
-    // Handle changes in the note input
+    // Обработка изменений в поле заметки
     const handleNoteChange = (event) => {
         setCurrentNote(event.target.value);
     };
 
-    // Save the note
+    // Сохранение заметки
     const handleSaveNote = () => {
         if (currentNote.trim() !== "") {
             const noteId = generateNoteId(currentDay, currentMonth, currentYear);
             const existingNoteIndex = notesList.findIndex(note => note.id === noteId);
 
             if (existingNoteIndex !== -1) {
-                // Update existing note
+                // Обновление существующей заметки
                 const updatedNotes = [...notesList];
-                updatedNotes[existingNoteIndex].note = currentNote;
+                updatedNotes[existingNoteIndex] = {
+                    ...updatedNotes[existingNoteIndex],
+                    note: currentNote,
+                    emotion: currentEmotion // Сохранение выбранной эмоции
+                };
                 setNotesList(updatedNotes);
             } else {
-                // Add new note
+                // Добавление новой заметки
                 setNotesList([
                     ...notesList,
                     {
                         id: noteId,
                         date: `${currentDay}-${currentMonth}-${currentYear}`,
-                        note: currentNote
+                        note: currentNote,
+                        emotion: currentEmotion // Сохранение выбранной эмоции
                     }
                 ]);
             }
 
-            setCurrentNote(""); // Clear the input field
+            // Очистка полей после сохранения
+            setCurrentNote("");
+            setCurrentEmotion(null);
+            setIsEditing(false); // Закрытие режима редактирования
         }
     };
 
-    // Filter notes for the current day, month, and year
+    // Фильтрация заметок для текущего дня, месяца и года
     const filteredNotes = notesList.filter(note => note.id === generateNoteId(currentDay, currentMonth, currentYear));
 
-    // Effect to load the existing note when the month or year changes
+    // Эффект для загрузки существующей заметки при изменении месяца или года
     useEffect(() => {
         const noteId = generateNoteId(currentDay, currentMonth, currentYear);
         const existingNote = notesList.find(note => note.id === noteId);
         if (existingNote) {
-            setCurrentNote(existingNote.note); // Load existing note if it exists
+            setCurrentNote(existingNote.note); // Загрузка существующей заметки
+            setCurrentEmotion(existingNote.emotion); // Загрузка существующей эмоции
         } else {
-            setCurrentNote(""); // Clear input if no note exists
+            setCurrentNote("");
+            setCurrentEmotion(null);
         }
     }, [currentMonth, currentYear, currentDay, notesList]);
+
+    const emotions = [1, 2, 3, 4, 5]; // Определение возможных эмоций
 
     return (
         <div className="tasks-container">
             <h2>Заметка на {currentDay}</h2>
-            <textarea
-                value={currentNote}
-                onChange={handleNoteChange}
-                placeholder="Напишите вашу заметку здесь..."
-                className="note-input"
-            />
-            <button onClick={handleSaveNote} className="save-button">Сохранить заметку</button>
+
+            {/* Кнопка для редактирования дня */}
+            <button onClick={() => setIsEditing(!isEditing)}>
+                {isEditing ? "Закрыть редактирование" : "Редактировать день"}
+            </button>
+
+            {/* Поля для ввода заметки и оценки отображаются только в режиме редактирования */}
+            {isEditing && (
+                <>
+                    <textarea
+                        value={currentNote}
+                        onChange={handleNoteChange}
+                        placeholder="Напишите вашу заметку здесь..."
+                        className="note-input"
+                    />
+                    <p>Как прошёл этот день?</p>
+                    {emotions.map(emotion => (
+                        <button key={emotion} onClick={() => setCurrentEmotion(emotion)}>{emotion}</button>
+                    ))}
+
+                    <button onClick={handleSaveNote} className="save-button">Сохранить заметку</button>
+                </>
+            )}
+
             <div className="notes-list">
                 {filteredNotes.length > 0 ? (
                     filteredNotes.map(note => (
                         <div key={note.id} className="note-item">
-                            <strong>{note.date}:</strong> {note.note}
+                            <strong>{note.date}:</strong> {note.note} (Оценка: {note.emotion})
                         </div>
                     ))
                 ) : (
