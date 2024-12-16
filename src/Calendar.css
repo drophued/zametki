@@ -1,8 +1,9 @@
 .calendar {
     font-family: "Courier New";
-    padding: 20px;
     border: 2px   #C8D2D1;
     background-color: #f0f0f0;
+    padding: 0 0 0 100px;
+
 }
 
 .calendar select {
@@ -24,4 +25,36 @@
     border: 2px   #C8D2D1;
     border-radius: 15px;
     background-color:#5acee4;
+}
+
+.day-buttons-container {
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: white;
+   margin: 0 0 0 100px;
+    display: flex;                /* Устанавливаем flex-контейнер */
+    flex-direction: row;         /* Элементы располагаются в строку */
+    flex-wrap: wrap;             /* Разрешаем перенос элементов на новую строку */
+    justify-content: flex-start;  /* Выравнивание элементов по левому краю */
+    max-width: 300px;            /* Устанавливаем максимальную ширину контейнера */
+
+}
+
+.day-buttons-container button {
+    border:  black;
+    border-width: 2px;
+    border-radius: 50%;          /* Делаем кнопки круглыми */
+    width: 40px;                 /* Фиксированная ширина */
+    height: 40px;                /* Фиксированная высота */
+    margin: 5px;                 /* Добавляем отступы между кнопками */
+    display: flex;               /* Используем flex для центрирования текста внутри кнопки */
+    align-items: center;         /* Вертикальное выравнивание текста по центру */
+    justify-content: center;     /* Горизонтальное выравнивание текста по центру */
+}
+
+
+.selected {
+    background-color: #5acee4; /* Change this color as needed */
+    color: black; /* Text color for selected button */
 }

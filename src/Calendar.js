@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tasks from './Tasks';
 import './Calendar.css';
 
-function Calendar() {
+function Calendar({ setNotes, notes }) {
+
     function getDaysInMonth(year, month) {
         const daysInMonths = {
             1: 31,
@@ -30,9 +31,9 @@ function Calendar() {
         return daysInMonths[month];
     }
 
-    const [currentMonth, setMonth] = useState(11); // November
-    const [currentYear, setYear] = useState(2024);
-    const [currentDay, setCurrentDay] = useState(null); // State for the currently selected day
+    const [currentMonth, setMonth] = useState(new Date().getMonth() + 1); // Current month
+    const [currentYear, setYear] = useState(new Date().getFullYear()); // Current year
+    const [currentDay, setCurrentDay] = useState(new Date().getDate()); // Current day
 
     const initMonth = [
         { id: 1, month: "Январь" },
@@ -61,15 +62,19 @@ function Calendar() {
 
     // Function to create an array of day buttons
     const renderDayButtons = () => {
-        return Array.from({ length: daysCount }, (_, i) => (
-            <button
-                key={i + 1}
-                className="day-button"
-                onClick={() => handleDayClick(i + 1)} // Set current day on button click
-            >
-                {i + 1}
-            </button>
-        ));
+        return Array.from({ length: daysCount }, (_, i) => {
+            const day = i + 1;
+            const isSelected = day === currentDay; // Check if this day is selected
+            return (
+                <button
+                    key={day}
+                    className={`day-button ${isSelected ? 'selected' : ''}`} // Apply 'selected' class if it's the current day
+                    onClick={() => handleDayClick(day)} // Set current day on button click
+                >
+                    {day}
+                </button>
+            );
+        });
     };
 
     // Function to handle day button click
@@ -95,6 +100,8 @@ function Calendar() {
                         type="number"
                         value={currentYear}
                         onChange={handleChangeYear}
+                        min="1900" // Optional minimum year
+                        max="2100" // Optional maximum year
                     />
                 </h2>
             </div>
@@ -109,6 +116,8 @@ function Calendar() {
                     currentMonth={currentMonth} // Pass the current month as a number
                     currentYear={currentYear} // Pass the current year
                     currentDay={currentDay} // Pass the selected day to Tasks
+                    setNotes={setNotes}
+                    notes={notes}
                 />
             </div>
         </div>

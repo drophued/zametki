@@ -1,80 +1,56 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Calendar from './Calendar';
+import Statistics from './Statistics';
 import './App.css';
 
 function App() {
+    const [showStatistics, setShowStatistics] = useState(false);
+    const [notes, setNotes] = useState([]); // State to hold notes
 
-    const [isMainOpen, setIsMainOpen] = useState(true);
-    const [isTasksPageOpen, setIsTasksPageOpen] = useState(false);
+    const handleShowStatistics = () => {
+        setShowStatistics(true);
+    };
 
-    function openTasksPage() {
-        setIsTasksPageOpen(true);
-        setIsMainOpen(false);
-    }
+    const handleBackToCalendar = () => {
+        setShowStatistics(false);
+    };
 
-    function openMainPage() {
-        setIsTasksPageOpen(false);
-        setIsMainOpen(true);
-    }
-
-    function result() {
-        if (isMainOpen) {
-            return <div>
-                <div className="maindiv">
-                    <ul className="mainul">
-                        <li><h1>Сегодняшний день</h1></li>
-                        <li>
-                            <button onClick={openTasksPage}>Перейти к календарю</button>
-                        </li>
-                        <li>
-                            <button>Статистика</button>
-                        </li>
-                    </ul>
-                </div>
-                <div className="today">
-                    <h1>Как прошёл ваш день?</h1>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                    <textarea placeholder={"Добавьте заметку..."}
-                              rows={10}
-                              cols={60}></textarea>
-            </div>
-                <div className="saveButton">
-                    <button>Сохранить</button>
-                </div>
-            </div>
-
-        } else if (isTasksPageOpen) {
-            return <div>
+    return (
+        <div className="App">
+            {showStatistics ? (
                 <div>
                     <div className="maindiv">
                         <ul className="mainul">
-                            <li><button onClick={openMainPage}>Сегодняшний день</button></li>
                             <li>
-                                <h1>Перейти к календарю</h1>
+                                <button className="backToCalendar" onClick={handleBackToCalendar}>
+                                    Календарь
+                                </button>
                             </li>
                             <li>
-                                <button>Статистика</button>
+                                <h1>Статистика</h1>
                             </li>
                         </ul>
                     </div>
+                    <Statistics notes={notes}/> {/* Pass notes data to Statistics */}
                 </div>
-                <Calendar/>
-            </div>
-        }
-    }
-
-    return (
-        <body>
-        <div className="App">
-            {result()}
+            ) : (
+                <div>
+                    <div className="maindiv">
+                        <ul className="mainul">
+                            <li>
+                                <h1>Календарь</h1>
+                            </li>
+                            <li>
+                                <button onClick={handleShowStatistics}>Статистика</button>
+                                {/* Show statistics */}
+                            </li>
+                        </ul>
+                    </div>
+                    <Calendar setNotes={setNotes} notes={notes} /> {/* Pass notes state to Calendar */}
+                </div>
+            )}
         </div>
-        </body>
     );
 }
 
 export default App;
-

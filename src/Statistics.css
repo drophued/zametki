@@ -1,0 +1,39 @@
+.statistics {
+    background-color: #f0f0f0; /* Фон для блока статистики */
+    padding: 20px; /* Отступы внутри блока */
+    border-radius: 10px; /* Закругленные углы */
+    margin: 50px 0 0 50px;
+}
+
+.statistics h1 {
+
+}
+
+.statistics h2 {
+    margin: 0px 0 0 150px;
+    font-family: "Courier New"; /* Шрифт заголовка */
+    font-size: 28px; /* Размер шрифта заголовка */
+    color: #333; /* Цвет текста заголовка */
+    margin-bottom: 20px; /* Отступ снизу заголовка */
+}
+
+.lineChart {
+    margin-top: 20px; /* Отступ сверху графика */
+}
+
+.lineChart .recharts-tooltip {
+    background-color: #ffffff; /* Фон для подсказки графика */
+    border: 1px solid #ccc; /* Граница подсказки */
+}
+
+.lineChart .recharts-cartesian-axis-tick-value {
+    font-family: "Courier New"; /* Шрифт для меток на осях */
+}
+
+.lineChart .recharts-line {
+    stroke-width: 2; /* Толщина линии графика */
+}
+
+
+
+

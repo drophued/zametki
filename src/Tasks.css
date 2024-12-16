@@ -7,3 +7,103 @@
     border-radius: 30px;
 }
 
+.tasks-container {
+    padding: 100px 0 100px 100px;
+    background-color: #f0f0f0;
+    position: absolute;
+    left: 600px;
+    top: 181px;
+}
+
+.notes-list {
+    font-family: "Courier New";
+    font-size: 25px;
+    display: flex;                /* Устанавливаем flex-контейнер */
+    flex-direction: row;         /* Элементы располагаются в строку */
+    flex-wrap: wrap;             /* Разрешаем перенос элементов на новую строку */
+    justify-content: flex-start;  /* Выравнивание элементов по левому краю */
+    max-width: 900px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    background-color: white;
+    padding: 30px;
+}
+
+.note-item {                     /* Класс для элементов списка */
+    max-width: 100%;             /* Максимальная ширина элемента - 100% от родителя */
+    margin-bottom: 10px;         /* Отступ между элементами */
+    word-wrap: break-word;       /* Перенос длинных слов на новую строку */
+    font-size: 20px;
+}
+
+.button button {
+    transition: 0.5s;
+    font-family: "Courier New";
+    margin: 50px 0 0 0;
+    padding: 30px 45px 30px 45px;
+    font-size: 25px;
+    border-radius: 30px;
+    border: #f0f0f0;
+    background-color: #5acee4;
+}
+
+.editing textarea {
+    margin: 50px 0 0 0;
+    vertical-align: middle;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.editing {
+    font-family: "Courier New";
+    font-size: 30px;
+}
+
+.emotionButton {
+    transition: 0.5s;
+    font-family: "Courier New";
+    margin: 50px 5px 5px 5px;
+    padding: 30px 45px 30px 45px;
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: white;
+    border: 2px solid #ccc;
+}
+
+.save-button {
+    transition: 0.5s;
+    font-family: "Courier New";
+    padding: 30px 45px 30px 45px;
+    font-size: 25px;
+    border-radius: 30px;
+    border: #f0f0f0;
+    background-color: #5acee4;
+}
+
+.emotion-display {
+    margin-bottom: 10px;
+}
+
+.emotion-image-display {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+}
+
+.emotion-selection {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.emotion-image {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    cursor: pointer;
+}
+
+.emotion-image.selected {
+    border-radius: 30px;
+    border: 5px solid #5acee4; /* Highlight border for selected */
+}

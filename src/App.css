@@ -1,9 +1,6 @@
 .App {
 }
 
-
-
-
 body {
   background-color: #f0f0f0;
 }
@@ -11,7 +8,6 @@ body {
 .maindiv {
   background-color: #ffffff;
 }
-
 
 .mainul {
   font-family: "Courier New";
@@ -26,7 +22,8 @@ body {
 
 
 .mainul li {
-  margin: 50px;
+  margin: 50px 50px 50px 50px;
+  padding: 0 300px 0 300px;
 }
 
 
@@ -36,7 +33,7 @@ body {
   border: 2px   #C8D2D1;
   background-color: #ffffff;
   color: black;
-  margin: 25px;
+  margin: 25px 25px 25px 25px;
 }
 
 
@@ -49,7 +46,6 @@ body {
   color: #C8D2D1;
   margin: 25px;
   border-radius: 5px;
-  background-image: linear-gradient(to right, #832146 0%,  #004B7A 100%);
 }
 
 .today {
