@@ -6,7 +6,7 @@ import emotion3 from './assets/emotion3.png';
 import emotion4 from './assets/emotion4.png';
 import emotion5 from './assets/emotion5.png';
 
-function Tasks({ currentYear, currentMonth, currentDay, setNotes, notes }) {
+function Tasks({ currentYear, currentMonth, currentDay, setNotes, notes, saveNoteToServer }) {
     const [currentNote, setCurrentNote] = useState("");
     const [currentEmotion, setCurrentEmotion] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
@@ -17,28 +17,28 @@ function Tasks({ currentYear, currentMonth, currentDay, setNotes, notes }) {
         setCurrentNote(event.target.value);
     };
 
-    const handleSaveNote = () => {
+   const handleSaveNote = () => {
         if (currentNote.trim() !== "") {
             const noteId = generateNoteId(currentDay, currentMonth, currentYear);
+            const newNote = {
+                id: noteId,
+                date: `${currentDay}-${currentMonth}-${currentYear}`,
+                note: currentNote,
+                emotion: currentEmotion
+            };
+
             const existingNoteIndex = notes.findIndex(note => note.id === noteId);
 
             if (existingNoteIndex !== -1) {
                 const updatedNotes = [...notes];
-                updatedNotes[existingNoteIndex] = {
-                    ...updatedNotes[existingNoteIndex],
-                    note: currentNote,
-                    emotion: currentEmotion
-                };
-                setNotes(updatedNotes); // Update global notes state
+                updatedNotes[existingNoteIndex] = newNote;
+                setNotes(updatedNotes);
             } else {
-                const newNote = {
-                    id: noteId,
-                    date: `${currentDay}-${currentMonth}-${currentYear}`,
-                    note: currentNote,
-                    emotion: currentEmotion
-                };
-                setNotes([...notes, newNote]); // Update global notes state
+                setNotes([...notes, newNote]);
             }
+
+            // Save the note to the server
+            saveNoteToServer(newNote);
 
             // Reset fields after saving
             setCurrentNote("");

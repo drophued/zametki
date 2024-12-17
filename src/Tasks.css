@@ -99,11 +99,13 @@
 
 .emotion-image {
     width: 50px; /* Adjust size as needed */
-    height: auto;
+    height: 50px;
     cursor: pointer;
 }
 
 .emotion-image.selected {
+    width: 44px; /* Adjust size as needed */
+    height: 44px;
     border-radius: 30px;
     border: 5px solid #5acee4; /* Highlight border for selected */
 }

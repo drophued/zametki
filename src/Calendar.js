@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Tasks from './Tasks';
 import './Calendar.css';
 
-function Calendar({ setNotes, notes }) {
+function Calendar({ setNotes, notes, saveNoteToServer }) {
 
     function getDaysInMonth(year, month) {
         const daysInMonths = {
@@ -82,7 +82,7 @@ function Calendar({ setNotes, notes }) {
         setCurrentDay(day); // Update current day state
     };
 
-    return (
+ return (
         <div>
             <div className="calendar">
                 <h2>Текущий месяц:
@@ -100,24 +100,24 @@ function Calendar({ setNotes, notes }) {
                         type="number"
                         value={currentYear}
                         onChange={handleChangeYear}
-                        min="1900" // Optional minimum year
-                        max="2100" // Optional maximum year
+                        min="1900"
+                        max="2100"
                     />
                 </h2>
             </div>
 
             <div className="day-buttons-container">
-                {renderDayButtons()} {/* Render day buttons */}
+                {renderDayButtons()}
             </div>
 
-            {/* Pass the current month, year, and selected day to Tasks */}
             <div>
                 <Tasks
-                    currentMonth={currentMonth} // Pass the current month as a number
-                    currentYear={currentYear} // Pass the current year
-                    currentDay={currentDay} // Pass the selected day to Tasks
+                    currentMonth={currentMonth}
+                    currentYear={currentYear}
+                    currentDay={currentDay}
                     setNotes={setNotes}
                     notes={notes}
+                    saveNoteToServer={saveNoteToServer} // Pass save function to Tasks
                 />
             </div>
         </div>
