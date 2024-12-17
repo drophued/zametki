@@ -9,15 +9,21 @@ function App() {
 
     // Fetch notes from the server on component mount
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/notes')
-            .then(response => response.json())
+        fetch('http://192.168.0.108:5000/notes') //
+            .then(response => {
+                console.log("Response:", response); // Логируем ответ
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => setNotes(data))
             .catch(error => console.error('Error fetching notes:', error));
     }, []);
 
     // Function to save notes to the server
     const saveNoteToServer = (note) => {
-        fetch('http://127.0.0.1:5000/notes', {
+        fetch('http://192.168.0.108:5000/notes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
